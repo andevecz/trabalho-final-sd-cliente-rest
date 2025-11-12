@@ -3,5 +3,3 @@
 ## **Dados coletados:**
 
 - **Tabela de classificação**
-- **Jogos**
-- **Placar dos jogos**
