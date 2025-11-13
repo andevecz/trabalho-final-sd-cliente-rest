@@ -18,7 +18,7 @@ public class CampeonatoBrasileiroREST {
     private static String API_KEY;
 
     public static void main(String[] args) {
-        /* 
+        /* TESTE COM DADOS INVENTADOS
         List<Equipe> ListaTimes = List.of(
             new Equipe("Palmeiras", 1, 68, 32, 21, "Copa Libertadores: Fase de Grupos", "palmeiras.png"),
             new Equipe("Flamengo", 2, 65, 32, 20, "Copa Libertadores: Fase de Grupos", "flamengo.png")
