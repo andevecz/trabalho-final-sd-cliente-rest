@@ -6,15 +6,11 @@ O professor fez a recomendação do uso da plataforma [RapidAPI](https://rapidap
 
 O objetivo do projeto é coletar os dados da API e mostrá-los ao usuário. Por esta API disponibilizar uma variedade grande de dados, achei interessante a criação de uma GUI que representasse a tabela de classificação do campeonato, com a possibilidade de ver detalhes sobre alguma equipe participante.
 
-<figure>
-  <img src="assets/tabela.png" alt="Tabela" style="width:100%">
-  <figcaption style="text-align: center; font-style: italic;">Tabela do Campeonato Brasileiro</figcaption>
-</figure>
+### *Tabela do Campeonato Brasileiro*
+![Tabela](assets/tabela.png)
 
-<figure>
-  <img src="assets/detalhes.png" alt="Detalhes" style="width:100%">
-  <figcaption style="text-align: center; font-style: italic;">Detalhes sobre a equipe selecionada</figcaption>
-</figure>
+### *Detalhes sobre a equipe selecionada.*
+![Detalhes da Equipe](assets/detalhes.png)
 
 ## **Dados coletados:**
 
