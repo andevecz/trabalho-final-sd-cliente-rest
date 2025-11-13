@@ -4,6 +4,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.net.URI;
 import java.net.http.*;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONArray;
@@ -16,6 +18,15 @@ public class CampeonatoBrasileiroREST {
     private static String API_KEY;
 
     public static void main(String[] args) {
+        /* 
+        List<Equipe> ListaTimes = List.of(
+            new Equipe("Palmeiras", 1, 68, 32, 21, "Copa Libertadores: Fase de Grupos", "palmeiras.png"),
+            new Equipe("Flamengo", 2, 65, 32, 20, "Copa Libertadores: Fase de Grupos", "flamengo.png")
+        );
+        CampeonatoView campeonatoView = new CampeonatoView(ListaTimes);*/
+        
+       
+        List<Equipe> ListaTimes = new ArrayList<>();
         try {
             API_KEY = Files.readString(Paths.get("src/api_key.txt")).trim();
         } catch (IOException ex) {
@@ -46,6 +57,7 @@ public class CampeonatoBrasileiroREST {
                 JSONObject groupObject = dataArray.getJSONObject(0);
                 JSONArray tabela = groupObject.getJSONArray("ROWS");
                 int quantidadeTimes = tabela.length();
+                String qualificacao;
                 
                 for (int i = 0; i < quantidadeTimes; i++){
                     JSONObject times = tabela.getJSONObject(i);
@@ -53,9 +65,28 @@ public class CampeonatoBrasileiroREST {
                     int posicao = times.getInt("RANKING");
                     String nomeTime = times.getString("TEAM_NAME");
                     int pontos = times.getInt("POINTS");
+                    int partidasJogadas = times.getInt("MATCHES_PLAYED");
+                    int vitorias = times.getInt("WINS");
+                    String escudoPath = times.getString("TEAM_IMAGE_PATH");
                     
+                    if (times.has("TEAM_QUALIFICATION")){
+                            qualificacao = switch (times.getString("TEAM_QUALIFICATION")) {
+                            case "q1" -> "Fase de Grupos: Copa Libertadores";
+                            case "q2" -> "Qualificado: Copa Libertadores";
+                            case "q3" -> "Qualificado: Copa Sul-Americana";
+                            case "r1" -> "Rebaixamento";
+                            default -> "";
+                        };
+                    }
+                    else {
+                        qualificacao = "-";
+                    }
+                    
+                    ListaTimes.add(new Equipe(nomeTime, posicao, pontos, partidasJogadas, vitorias, qualificacao, escudoPath));
                     System.out.println(posicao + "|" + nomeTime + "|" + pontos);
                 }
+        
+                CampeonatoView campeonatoView = new CampeonatoView(ListaTimes);
                 
             } catch (JSONException ex) {
                 Logger.getLogger(CampeonatoBrasileiroREST.class.getName()).log(Level.SEVERE, null, ex);
