@@ -39,7 +39,7 @@ public class CampeonatoBrasileiroREST {
             HttpRequest requisicao = HttpRequest.newBuilder()
                    .uri(URI.create(API_TABLE_URL))
                     .header("x-rapidapi-key", API_KEY)
-                    .header("x-rapidapi-host", "flashlive-sports.p.rapidapi.com")
+                    .header("x-rapidapi-host", API_HOST)
                     .method("GET", HttpRequest.BodyPublishers.noBody())
                     .build();
             resposta = HttpClient.newHttpClient().send(requisicao, HttpResponse.BodyHandlers.ofString());
